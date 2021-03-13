@@ -7,7 +7,7 @@ const fs = require('fs');
 
 let runningBinaries = {};
 
-// functions 
+// functions
 const runAll = (problemData, id = null) => {
     let testCases = problemData.sampleTestcases;
     const language = problemData.language;
@@ -25,7 +25,7 @@ const runAll = (problemData, id = null) => {
 
 const runTestCase = async (testcase, language, timeout, filePath) => {
     console.log(`Running for testcase => ${testcase.id}`);
-    
+
     // getting language config
     const config = getRunningConfig(language, filePath);
     console.log(`running config => ${JSON.stringify(config)}`);
@@ -56,7 +56,7 @@ const runTestCase = async (testcase, language, timeout, filePath) => {
         throw error;
     }
 
-    
+
     const ret = new Promise((resolve) => {
         runner.stdout.on('data', data => result.stdout += data);
         runner.stderr.on('data', data => result.stderr += data);
@@ -68,8 +68,8 @@ const runTestCase = async (testcase, language, timeout, filePath) => {
             result.signal = signal;
             result.time = end - start;
             // striping the stderr and stdout
-            result.stdout = result.stdout.substring(0, 1000);
-            result.stderr = result.stderr.substring(0, 1000);
+            result.stdout = result.stdout.substring(0, 3000);
+            result.stderr = result.stderr.substring(0, 3000);
             delete runningBinaries[testcase.id];
             resolve(result);
         });
@@ -89,17 +89,17 @@ const runTestCase = async (testcase, language, timeout, filePath) => {
             result.signal = err.name;
             result.time = end - start;
             // striping the stderr and stdout
-            result.stdout = result.stdout.substring(0, 1000);
-            result.stderr = result.stderr.substring(0, 1000);
+            result.stdout = result.stdout.substring(0, 3000);
+            result.stderr = result.stderr.substring(0, 3000);
             delete runningBinaries[testcase.id];
             console.log(`Error occured while running testcase => ${result}`);
             resolve(result);
         });
 
-        
+
 
     });
-    
+
     return ret;
 
 }
@@ -108,12 +108,12 @@ const runTestCase = async (testcase, language, timeout, filePath) => {
 
 const getRunningConfig = (language, filePath) => {
     let config = {};
-    
+
     // get compiler alias
     config.command = pref.getInterpreterAlias(language);
 
     // add args
-    const args = pref.getRuntimeArgs(language).split(" ").filter(item => !(item == " " || item == "" || !item));
+    const args = pref.getRuntimeArgs(language).split(" ").filter(item => !(item === " " || item === "" || !item));
     switch (language) {
         case "python":
             config.args = [
@@ -131,7 +131,7 @@ const getRunningConfig = (language, filePath) => {
                 binFileName
             ];
             break;
-    
+
         default:
             config.command = fileManager.utils.getBinaryLocation(filePath);
             config.args = []
@@ -152,7 +152,7 @@ const getJavaMainClassName = (filepath) => {
     return match[2];
 }
 
-// exports 
+// exports
 module.exports = {
     runTestCase
 }
