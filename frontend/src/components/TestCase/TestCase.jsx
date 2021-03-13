@@ -57,17 +57,17 @@ const TestCase = ({
       .replace(/(( |\t)*)(\r\n|\n)/gm, "")
       .trim();
     const out = data.output.replace(/(( |\t)*)(\r\n|\n)/gm, "").trim();
-    if (
-      !data.result.timeout &&
-      userOut === out
-    ) {
+
+    if (data.result.timeout || userOut !== out) { // code wrong
+      setBgColor(COLOR.WRONG);
+      setCollapsed(false);
+    } else if (data.result.stderr !== "") { // code correct, but stderr non-empty
+      setBgColor(COLOR.WRONG);
+      setCollapsed(true);
+    } else { // all correct
       setBgColor(COLOR.CORRECT);
       setCollapsed(true);
-      return;
     }
-    console.log(userOut, out);
-    setBgColor(COLOR.WRONG);
-    setCollapsed(false);
   };
 
   /*=============================================================*/
