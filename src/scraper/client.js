@@ -9,7 +9,7 @@ const fs = require('fs');
 const path = require('path');
 
 // 10 sec timeout on response
-axios.defaults.timeout = 10000;
+axios.defaults.timeout = 60000;
 // setting up cookies
 axiosCookieJarSupport(axios);
 let cookieStorePath = undefined;
@@ -151,7 +151,7 @@ const getChannelsAndCsrf = async (url) => {
 
     const $ = cheerio.load(response.data);
     const csrf_token = $('form input[name="csrf_token"]').attr('value');
-    // channels 
+    // channels
     const globalChannel = $('head > meta[name="gc"]').attr("content");
     const userChannel = $("meta[name=\"uc\"]").attr("content");
     const userShowMessageChannel = $("meta[name=\"usmc\"]").attr("content")
