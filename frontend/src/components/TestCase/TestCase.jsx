@@ -225,7 +225,7 @@ const TestCase = ({
           }}
         >
           {data.result
-            ? data.result.stdout.substring(0, 200)
+            ? data.result.stdout.substring(0, 3000)
             : "Run the Testcase"}
         </pre>
       </div>
@@ -263,7 +263,7 @@ const TestCase = ({
             }}
           >
             {data.result
-              ? data.result.stderr.substring(0, 300)
+              ? data.result.stderr.substring(0, 3000)
               : "Run the Testcase"}
           </pre>
         </div>

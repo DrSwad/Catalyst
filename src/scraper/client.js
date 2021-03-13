@@ -8,7 +8,7 @@ const cf = require('./codeforces');
 const fs = require('fs');
 const path = require('path');
 
-// 10 sec timeout on response
+// 60 sec timeout on response
 axios.defaults.timeout = 60000;
 // setting up cookies
 axiosCookieJarSupport(axios);
