@@ -112,7 +112,7 @@
                 "catalyst.default.saveLocation": {
                     "title": "Default Problem Save Path",
                     "type": "string",
-                    "description": "Path for folder to store problem data. Default is working director",
+                    "description": "Path for folder to store problem data. Default is working directory",
                     "default": ""
                 },
                 "catalyst.default.template.c++": {
@@ -142,7 +142,7 @@
                     "title": "Args for python file",
                     "type": "string",
                     "default": "",
-                    "description": "space seperated args ex. '-Wignore -u'"
+                    "description": "space separated args ex. '-Wignore -u'"
                 },
                 "catalyst.lang.cpp.compiler": {
                     "description": "Compiler alias name ex. g++",
@@ -153,7 +153,7 @@
                     "title": "Args for c++ compiler",
                     "type": "string",
                     "default": "",
-                    "description": "space seperated args ex. '-Wmaybe-uninitialized -std=c++14'"
+                    "description": "space separated args ex. '-Wmaybe-uninitialized -std=c++14'"
                 },
                 "catalyst.lang.java.compiler": {
                     "description": "Compiler alias name ex. javac",
@@ -169,13 +169,13 @@
                     "title": "Args for java compiler",
                     "type": "string",
                     "default": "",
-                    "description": "space seperated args ex. '-verbose'"
+                    "description": "space separated args ex. '-verbose'"
                 },
                 "catalyst.lang.java.runtime.args": {
                     "title": "Args for java interpreter",
                     "type": "string",
                     "default": "",
-                    "description": "space seperated args ex. '-verbose'"
+                    "description": "space separated args ex. '-verbose'"
                 }
             }
         }

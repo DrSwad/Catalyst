@@ -21,6 +21,16 @@ const saveToCache = (problemData) => {
   return problemPath;
 };
 
+// Used to retrieve problem editorial. Needed since editorials are stored in data
+// file dynamically and not immediately when the problem was initially fetched
+const retrieveFromCache = (problemData) => {
+  // get cache folder root path
+  const rootPath = pref.getCacheFolder();
+
+  const problemPath = utils.getProblemDataPath(problemData, rootPath);
+  return JSON.parse(fs.readFileSync(problemPath));
+};
+
 function ensureDirectoryExistence(filePath) {
   var dirname = path.dirname(filePath);
   if (fs.existsSync(dirname)) {
@@ -49,6 +59,7 @@ const createSourceCodeFile = (problemData) => {
 
 module.exports = {
   saveToCache,
+  retrieveFromCache,
   createSourceCodeFile,
   utils,
 };
